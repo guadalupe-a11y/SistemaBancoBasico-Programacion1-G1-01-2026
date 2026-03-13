@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BancoDbContext.cs" />
+    <Compile Include="ClienteDAL.cs" />
     <Compile Include="ClienteDALADO.cs" />
     <Compile Include="Connection.cs" />
     <Compile Include="Migrations\202603130013516_crear_tabla_clientes.cs" />

@@ -23,32 +23,59 @@ namespace DAL
             // 1. Utilizar la clase SqlConnection
             SqlConnection conn = new SqlConnection(Connection.connectionString);
 
-            // 2. Crear la consulta
-            string query = "SELECT * FROM Clientes";
-
-            // 3. Crear nuestro comando a ejecutar
-            SqlCommand cmd = new SqlCommand(query, conn);
-
-            // 4. Paso abrir la conexión hacia la base de datos
-            conn.Open();
-
-            // 5. Ejecutar el comando y almacenar el resultado
-            SqlDataReader reader = cmd.ExecuteReader();
-
-            // 6. Manejar la información
-            while (reader.Read())
+            try
             {
-                // 6.1 Crear nuestro objeto Cliente
+                // 2. Crear la consulta
+                string query = "SELECT * FROM Clientes";
 
-                // 6.2 Almacenar el objeto Cliente en la Lista de Clientes
+                // 3. Crear nuestro comando a ejecutar
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                // 4. Paso abrir la conexión hacia la base de datos
+                conn.Open();
+
+                // 5. Ejecutar el comando y almacenar el resultado
+                SqlDataReader reader = cmd.ExecuteReader();
+
+                // 6. Manejar la información
+                while (reader.Read())
+                {
+                    // 6.1 Crear nuestro objeto Cliente
+                    Cliente cliente = new Cliente()
+                    {
+                        ClienteId = reader.GetInt32(reader.GetOrdinal("ClienteId")),
+                        Nombres = reader.GetString(reader.GetOrdinal("Nombres")),
+                        Apellidos = reader.GetString(reader.GetOrdinal("Apellidos")),
+                        Documento = reader.GetString(reader.GetOrdinal("Documento")),
+                        Email = reader.GetString(reader.GetOrdinal("Email")),
+                        Telefono = reader.GetString(reader.GetOrdinal("Telefono")),
+                        FechaRegistro = reader.GetDateTime(reader.GetOrdinal("FechaRegistro"))
+                    };
+
+                    // 6.2 Almacenar el objeto Cliente en la Lista de Clientes
+                    clientes.Add(cliente);
+                }
+
+                // 7. Cerrar el reader
+
+                reader.Close();
+
+                // 8. Cerrar la conexión
+                conn.Close();
+
             }
+            catch (Exception)
+            {
 
-            // 7. Cerrar el reader
-
-            reader.Close();
-
-            // 8. Cerrar la conexión
-            conn.Close();
+                throw;
+            }
+            finally
+            {
+                if (conn.State != System.Data.ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
+            }
 
             return clientes;
         }
@@ -56,11 +83,11 @@ namespace DAL
         public int Guardar(Cliente cliente) //
         {
             int resultado = 0;
+            SqlConnection conn = new SqlConnection(Connection.connectionString);
+
 
             try
             {
-                SqlConnection conn = new SqlConnection(Connection.connectionString);
-
                 string query = @"
                         INSERT INTO [dbo].[Clientes]
                                ([Nombres]
@@ -76,7 +103,6 @@ namespace DAL
                                ,@Email
                                ,@Telefono
                                ,@FechaRegistro)
-                    GO
                     ";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -88,11 +114,20 @@ namespace DAL
                 cmd.Parameters.AddWithValue("@Telefono", cliente.Telefono);
                 cmd.Parameters.AddWithValue("@FechaRegistro", cliente.FechaRegistro);
 
-                resultado = cmd.ExecuteNonQuery();
+                conn.Open();
+
+                resultado = cmd.ExecuteNonQuery();                
             }
             catch (Exception ex)
             {
                 resultado = -1;
+            }
+            finally
+            {
+                if (conn.State != System.Data.ConnectionState.Closed)
+                {
+                    conn.Close();
+                }
             }
 
             return resultado;
