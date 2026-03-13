@@ -10,7 +10,6 @@ namespace DAL
 {
     public class ClienteDALADO
     {
-
         /**
          * Array, ArrayList, Stack, Queue, List
          **/
@@ -52,6 +51,51 @@ namespace DAL
             conn.Close();
 
             return clientes;
+        }
+
+        public int Guardar(Cliente cliente) //
+        {
+            int resultado = 0;
+
+            try
+            {
+                SqlConnection conn = new SqlConnection(Connection.connectionString);
+
+                string query = @"
+                        INSERT INTO [dbo].[Clientes]
+                               ([Nombres]
+                               ,[Apellidos]
+                               ,[Documento]
+                               ,[Email]
+                               ,[Telefono]
+                               ,[FechaRegistro])
+                         VALUES(
+                               @Nombres
+                               ,@Apellidos
+                               ,@Documento
+                               ,@Email
+                               ,@Telefono
+                               ,@FechaRegistro)
+                    GO
+                    ";
+
+                SqlCommand cmd = new SqlCommand(query, conn);
+
+                cmd.Parameters.AddWithValue("@Nombres", cliente.Nombres);
+                cmd.Parameters.AddWithValue("@Apellidos", cliente.Apellidos);
+                cmd.Parameters.AddWithValue("@Documento", cliente.Documento);
+                cmd.Parameters.AddWithValue("@Email", cliente.Email);
+                cmd.Parameters.AddWithValue("@Telefono", cliente.Telefono);
+                cmd.Parameters.AddWithValue("@FechaRegistro", cliente.FechaRegistro);
+
+                resultado = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                resultado = -1;
+            }
+
+            return resultado;
         }
 
     }

@@ -10,6 +10,6 @@ namespace DAL
     public static class Connection
     {
         // variable
-        public static string connectionString = "Data Source=DESKTOP-G40T8T8;Initial Catalog=BancoBasicoDB_G2;Integrated Security=True;";
+        public static string connectionString = "Data Source=Frank\\SQLEXPRESS;Initial Catalog=banco_bd_g1;Integrated Security=True;";
     }
 }
