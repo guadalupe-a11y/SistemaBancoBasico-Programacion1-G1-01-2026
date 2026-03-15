@@ -53,7 +53,7 @@ namespace CUI
             try
             {
                 // cadena de conexion
-                string connectionString = "Data Source=Frank\\SQLEXPRESS;Initial Catalog=banco_bd_g1;Integrated Security=True;";
+                string connectionString = "Data Source=Guadalupe;Initial Catalog=Banco_DB;Integrated Security=True;";
 
                 // crear un objeto SqlConnection
                 SqlConnection conn = new SqlConnection(connectionString);

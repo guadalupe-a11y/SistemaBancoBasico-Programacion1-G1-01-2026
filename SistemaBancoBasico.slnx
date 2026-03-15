@@ -4,4 +4,5 @@
   <Project Path="DAL/DAL.csproj" Id="c69fa71b-d8b6-4dff-814a-4ce5e2c973c4" />
   <Project Path="EL/EL.csproj" Id="33fe558f-0b6a-443a-a9d3-ad846a5fa7f6" />
   <Project Path="GUI/GUI.csproj" Id="94684889-8e9a-4d0d-8cc2-ffe7593c64f6" />
+  <Project Path="WindowsFormsApp1/WindowsFormsApp1.csproj" Id="78627812-9642-4f15-9a0d-0fd20caf7933" />
 </Solution>

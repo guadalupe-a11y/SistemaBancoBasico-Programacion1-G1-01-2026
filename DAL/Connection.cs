@@ -10,6 +10,6 @@ namespace DAL
     public static class Connection
     {
         // variable
-        public static string connectionString = "Data Source=Frank\\SQLEXPRESS;Initial Catalog=banco_bd_g1;Integrated Security=True;";
+        public static string connectionString = "Data Source=Guadalupe;Initial Catalog=Banco_DB;Integrated Security=True;";
     }
 }
