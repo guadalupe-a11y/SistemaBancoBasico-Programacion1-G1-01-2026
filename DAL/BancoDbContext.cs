@@ -25,6 +25,9 @@ namespace DAL
         // public virtual DbSet<MyEntity> MyEntities { get; set; }
 
         public virtual DbSet<Cliente> Clientes { get; set; } // CRUD
+        public virtual DbSet<TipoCuenta> TipoCuentas { get; set; }
+        public virtual DbSet<Cuenta> Cuentas { get; set; }
+
     }
 
     //public class MyEntity
