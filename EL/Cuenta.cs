@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace EL
 {
-public class Cuenta
+    public class Cuenta
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-            public int CuentaId { get; set; }
+        public int CuentaId { get; set; }
 
         [Required]
         [StringLength(30)]

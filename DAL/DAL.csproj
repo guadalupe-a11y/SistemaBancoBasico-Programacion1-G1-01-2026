@@ -67,11 +67,17 @@
   <ItemGroup>
     <Compile Include="BancoDbContext.cs" />
     <Compile Include="ClienteDAL.cs" />
-    <Compile Include="ClienteDALADO.cs" />
-    <Compile Include="Connection.cs" />
     <Compile Include="Migrations\202603130013516_crear_tabla_clientes.cs" />
     <Compile Include="Migrations\202603130013516_crear_tabla_clientes.Designer.cs">
       <DependentUpon>202603130013516_crear_tabla_clientes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202603200132045_cambios_de_campos_tabla_cliente.cs" />
+    <Compile Include="Migrations\202603200132045_cambios_de_campos_tabla_cliente.Designer.cs">
+      <DependentUpon>202603200132045_cambios_de_campos_tabla_cliente.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202603200137460_crear_tabla_TipoCuenta_y_Cuenta.cs" />
+    <Compile Include="Migrations\202603200137460_crear_tabla_TipoCuenta_y_Cuenta.Designer.cs">
+      <DependentUpon>202603200137460_crear_tabla_TipoCuenta_y_Cuenta.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -89,6 +95,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202603130013516_crear_tabla_clientes.resx">
       <DependentUpon>202603130013516_crear_tabla_clientes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202603200132045_cambios_de_campos_tabla_cliente.resx">
+      <DependentUpon>202603200132045_cambios_de_campos_tabla_cliente.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202603200137460_crear_tabla_TipoCuenta_y_Cuenta.resx">
+      <DependentUpon>202603200137460_crear_tabla_TipoCuenta_y_Cuenta.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
